@@ -105,8 +105,7 @@ bool GazeboYarpControlBoardDriver::gazebo_init()
 
     std::cout << "gazebo_init set pid done!" << std::endl;
 
-    this->m_updateConnection
-        = gazebo::event::Events::ConnectWorldUpdateBegin(boost::bind(&GazeboYarpControlBoardDriver::onUpdate,
+    this->m_updateConnection = gazebo::event::Events::ConnectWorldUpdateBegin(boost::bind(&GazeboYarpControlBoardDriver::onUpdate,
                                                                     this, _1));
     m_gazeboNode = gazebo::transport::NodePtr(new gazebo::transport::Node);
     m_gazeboNode->Init(this->m_robot->GetWorld()->GetName());
@@ -537,7 +536,7 @@ bool GazeboYarpControlBoardDriver::sendPositionToGazebo(int j, double ref, gazeb
     return true;
 }
 
-bool GazeboYarpControlBoardDriver::sendVelocitiesToGazebo(yarp::sig::Vector& refs, gazebo::common::Time stepTime) //NOT TESTED
+bool GazeboYarpControlBoardDriver::sendVelocitiesToGazebo(yarp::sig::Vector& refs, gazebo::common::Time stepTime)
 {
     if(stepTime.Double() == 0)
       return false;
@@ -548,7 +547,7 @@ bool GazeboYarpControlBoardDriver::sendVelocitiesToGazebo(yarp::sig::Vector& ref
     return true;
 }
 
-bool GazeboYarpControlBoardDriver::sendVelocityToGazebo(int j, double ref, gazebo::common::Time stepTime) //NOT TESTED
+bool GazeboYarpControlBoardDriver::sendVelocityToGazebo(int j, double ref, gazebo::common::Time stepTime)
 {    
     if(stepTime.Double() == 0)
       return false;
